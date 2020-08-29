@@ -16,15 +16,18 @@ class App extends React.Component {
     // state system
     // this is only time we do direct assignment
     //  to this.state
-    this.state = { lat: null };
-    this.state = { lng: null };
+    // initilaize with sate
+    this.state = { lat: null, lng: null, errorMessage: "" };
 
     window.navigator.geolocation.getCurrentPosition(
       (position) => {
+        // update state with setState
         this.setState({ lat: position.coords.latitude });
         this.setState({ lng: position.coords.longitude });
       },
-      (err) => console.log(err)
+      (err) => {
+        this.setState({ errorMessage: err.message });
+      }
     );
   }
 
@@ -35,6 +38,8 @@ class App extends React.Component {
         Latitude:{this.state.lat}
         <br />
         Longitude:{this.state.lng}
+        <br />
+        Error: {this.errorMessage}
       </div>
     );
   }
