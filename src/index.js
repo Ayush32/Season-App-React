@@ -8,13 +8,35 @@ import ReactDOM from "react-dom";
 
 // scaffolding APP
 
-class App extends React.components {
-  render() {
+class App extends React.Component {
+  // initialize the state
+  constructor(props) {
+    super(props);
+
+    // state system
+    // this is only time we do direct assignment
+    //  to this.state
+    this.state = { lat: null };
+    this.state = { lng: null };
+
     window.navigator.geolocation.getCurrentPosition(
-      (position) => console.log(position),
+      (position) => {
+        this.setState({ lat: position.coords.latitude });
+        this.setState({ lng: position.coords.longitude });
+      },
       (err) => console.log(err)
     );
-    return <div>Latitude: </div>;
+  }
+
+  // React says we have to define render
+  render() {
+    return (
+      <div>
+        Latitude:{this.state.lat}
+        <br />
+        Longitude:{this.state.lng}
+      </div>
+    );
   }
 }
 
