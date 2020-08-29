@@ -5,34 +5,43 @@
 
 import React from "react";
 import ReactDOM from "react-dom";
+import SeasonDisplay from "./SeasonDisplay";
 
 // scaffolding APP
 
 class App extends React.Component {
   // initialize the state
-  constructor(props) {
-    super(props);
+  // constructor(props) {
+  //   super(props);
 
-    // state system
-    // this is only time we do direct assignment
-    //  to this.state
-    // initilaize with sate
-    this.state = { lat: null, lng: null, errorMessage: "" };
+  // state system
+  // this is only time we do direct assignment
+  //  to this.state
 
-    window.navigator.geolocation.getCurrentPosition(
-      (position) => {
-        // update state with setState
-        this.setState({ lat: position.coords.latitude });
-        this.setState({ lng: position.coords.longitude });
-      },
-      (err) => {
-        this.setState({ errorMessage: err.message });
-      }
-    );
-  }
+  // initilaize with sate
+  // this.state = { lat: null, lng: null, errorMessage: "" };
+
+  // using with state system
+  //   window.navigator.geolocation.getCurrentPosition(
+  //     (position) => {
+  //       // update state with setState
+  //       this.setState({ lat: position.coords.latitude });
+  //       this.setState({ lng: position.coords.longitude });
+  //     },
+  //     (err) => {
+  //       this.setState({ errorMessage: err.message });
+  //     }
+  //   );
+  // }
+
+  state = { lat: null, errorMessage: "" };
+  //  component lifecycle method
 
   componentDidMount() {
-    console.log("My component was renders to the screen");
+    window.navigator.geolocation.getCurrentPosition(
+      (position) => this.setState({ lat: position.coords.latitude }),
+      (err) => this.setState({ errorMessage: err.message })
+    );
   }
 
   componentDidUpdate() {
@@ -46,7 +55,7 @@ class App extends React.Component {
       return <div>Error: {this.state.errorMessage}</div>;
     }
     if (!this.state.errorMessage && this.state.lat) {
-      return <div>Latitude: {this.state.lat}</div>;
+      return <SeasonDisplay lat={this.state.lat} />;
     }
 
     return (
