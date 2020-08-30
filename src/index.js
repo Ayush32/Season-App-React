@@ -6,7 +6,7 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import SeasonDisplay from "./SeasonDisplay";
-import Loader from "./Spinner";
+import Spinner from "./Spinner";
 // scaffolding APP
 
 class App extends React.Component {
@@ -54,7 +54,7 @@ class App extends React.Component {
       return <SeasonDisplay lat={this.state.lat} />;
     }
 
-    return <Loader />;
+    return <Spinner text="Please Allow Your Location" />;
   }
 }
 

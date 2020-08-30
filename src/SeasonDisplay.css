@@ -32,9 +32,3 @@
 .summer {
   background-color: rgb(243, 217, 170);
 }
-
-.loader {
-  position: fixed;
-  left: 50%;
-  top: 50%;
-}
