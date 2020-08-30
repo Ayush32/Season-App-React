@@ -44,8 +44,7 @@ class App extends React.Component {
     );
   }
 
-  // React says we have to define render
-  render() {
+  renderContent() {
     // rendering conditions
     if (this.state.errorMessage && !this.state.lat) {
       return <div>Error: {this.state.errorMessage}</div>;
@@ -55,6 +54,11 @@ class App extends React.Component {
     }
 
     return <Spinner text="Please Allow Your Location" />;
+  }
+
+  // React says we have to define resnder
+  render() {
+    return <div className="border red">{this.renderContent()}</div>;
   }
 }
 
