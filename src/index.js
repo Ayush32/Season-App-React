@@ -6,7 +6,7 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import SeasonDisplay from "./SeasonDisplay";
-
+import Loader from "./Spinner";
 // scaffolding APP
 
 class App extends React.Component {
@@ -44,10 +44,6 @@ class App extends React.Component {
     );
   }
 
-  componentDidUpdate() {
-    console.log("My component was updated -- its rendered");
-  }
-
   // React says we have to define render
   render() {
     // rendering conditions
@@ -58,13 +54,7 @@ class App extends React.Component {
       return <SeasonDisplay lat={this.state.lat} />;
     }
 
-    return (
-      <div>
-        <h1>
-          <b>Loading!</b>
-        </h1>
-      </div>
-    );
+    return <Loader />;
   }
 }
 
